@@ -30,14 +30,31 @@ Para instalar **Express** en tu proyecto de Node.js, sigue estos pasos:
 
 1. **Inicializar un proyecto de Node.js**: Primero, debes tener un proyecto de Node.js. Si aún no lo tienes, crea una carpeta para tu proyecto y abre la terminal dentro de esa carpeta. Luego, ejecuta el siguiente comando para inicializar un archivo `package.json`, el cual contendrá las dependencias y configuración del proyecto:`npm init -y`
 
-2. **Configurar tu servidor con Express**: Una vez tengamos inicializado el proyecto, instalamos _**Express**_ con el siguiente comando:`npm install express`
+2. **Instal·Lar Express**: Una vez tengamos inicializado el proyecto, instalamos _**Express**_ con el siguiente comando:`npm install express`
 Este comando actualizara y generara tres elementos importantes:
 
-<!-- - **package.json**: Contiene las dependencias y configuración de tu proyecto. Se actualiza con Express en la sección de "dependencies".
+3. **Configurar el servidor**: Uan vez instalado _**Express**_ creamos un archivo que sera el indice principal: **index.js** agrega el siguiente código dentro para crear un servidor básico con Express:
 
-- **package-lock.json**: Asegura que las dependencias se instalen de forma consistente, guardando versiones exactas de las librerías.
+```javascript
+const express = require('express');
+const app = express();
 
-- **node_modules/**: Carpeta que contiene las dependencias instaladas. No debes compartirla ni subirla a un repositorio, ya que se genera automáticamente. -->
+// Ruta básica
+app.get('/', (req, res) => {
+  res.send('¡Hola, mundo!');
+});
+
+// Configurar el puerto
+app.listen(3000, () => {
+  console.log('Servidor corriendo en puerto 3000');
+});
+```
+
+4.**Ejecutar el servidor**: Para iniciar el servidor, ejecuta el siguiente comando en la terminal: `node index.js`
+Si todo esta correcto nos saldra _**Servidor corriendo en puerto 3000**_
+
+
+
 
 
 
