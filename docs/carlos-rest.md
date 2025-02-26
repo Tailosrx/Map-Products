@@ -34,6 +34,7 @@ Dependiendo decada tipo de operación se utilizará un método diferente de env�
 -   POST:  Se usará para insertar nuevos recursos
 -   PUT :  Se usará para actualizar recursos
 -   DELETE :  Se usará para borrar recursos
+
   **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcn4BnQ6DmN4nqMxo8TMKZSuWgTgL6i7pOVpCAix7j9ae1qawWweRXfaY7OwGwLFzEr5KSNVP5sEMBMejpNYcp_OZ46GGBHfhfEuJZ8YGEyDfX_epK2dBydSpF5aHDmg-zRWKPW?key=5s4uctNlhIiDpaDERL6yY-Xg)**
 ## NIVEL 3 (HATEOAS)
 Permite que las API REST incluyan enlaces a recursos relacionados en sus respuestas. Esto evita que el cliente tenga que conocer todas las URLs manualmente.
