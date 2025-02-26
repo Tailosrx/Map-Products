@@ -5,25 +5,60 @@ REST (Representational State Transfer) es un ESTILO de Arquitectura a la hora de
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeVPgJz5iiuy5xU37qRsClby3lGHJYfSRnNI2X-816c1Uth2AJht7wQOes33PpFbSMIUVdIBu4z0mWezyl1SW9kJ4sUoGsXLAhNorE6I3QFLycUL0uEYCoWI7f1T1hW5io7550H?key=5s4uctNlhIiDpaDERL6yY-Xg)**
 Cuando nosotros realizamos una comunicación cliente-servidor, le enviamos una información y recibimos un resultado.
 
-## NIVEL 0
+> ## NIVEL 0
 
 Podemos mandar a un servicio un mensaje en formato **XML o JSON**. El servicio lo recepcionará y nos devolverá una respuesta.
 
 Esto es lo que habitualmente en Arquitecturas REST se denomina el nivel 0. No tenemos **ningún tipo de organización. Es el caos.**
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXemhuXDZZh8gsmNpO2Z7QbJDQAJX5r4VsttLJvgFffYqYRq_BrdqxOF2M_i5VbsCFJ-yHhaSZFGTEGdF-7DTmVTqBYdlQh-eBZa5UKoMQwMUeDZ-5aOs0BixxIftnteKt55HMP7?key=5s4uctNlhIiDpaDERL6yY-Xg)**
+**Petición GET** (sin un recurso claro):
+````sql
+GET /alumno
+````
+**Respuesta** (simplemente devuelve datos):
+````json
+[ 
+	{ 
+		"id": 1, 
+		"nombre": 
+		"Carlos Díaz", 
+		"edad": 23 
+	}, 
+	{ 
+		"id": 2, 
+		"nombre": 
+		"María López", 
+		"edad": 22 
+	}	 
+]
+````
 
-## NIVEL 1 (Recursos)
+> ## NIVEL 1 (Recursos)
 
 En vez de tener servicios con métodos diversos **declaramos Recursos**.
-
-  
 
 ¿Qué es un Recurso?
 
 Se introducen los recursos (como Facturas, Cursos, Compras) y **cada recurso tiene su propia URL**. El cliente puede interactuar con estos recursos a través de métodos HTTP, como **GET** y **POST**, pero no hay una distinción estricta entre qué verbo se usa para qué tipo de operación.
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXc3SSUGZ2Mzznw-fKAlj5mFSZ0WzhUMxkdYhJykRxrMs9-6jIuAPnHFNRbLSnuOC5EsN3fBlZlHKiSGBtYQgiPsA6hfzATMRMuE81jo03fWcYO0eNmrRkjF5IV9gZZm4azbZiIULA?key=5s4uctNlhIiDpaDERL6yY-Xg)**
+
+**Petición GET** (CON un recurso claro):
+````sql
+GET /alumno/3
+````
+**Respuesta** (más estructurada y definida como un recurso específico):
+````json
+{ 
+	"id": 3, 
+	"nombre": 
+	"Carlos Díaz", 
+	"edad": 23 
+}
+````
+
+
 ## NIVEL 2 (**HTTP Verbs**)
 Hasta este momento para realizar las peticiones se usa GET o POST indistintamente .
 
@@ -34,8 +69,7 @@ Dependiendo decada tipo de operación se utilizará un método diferente de env�
 -   POST:  Se usará para insertar nuevos recursos
 -   PUT :  Se usará para actualizar recursos
 -   DELETE :  Se usará para borrar recursos
-
-  **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcn4BnQ6DmN4nqMxo8TMKZSuWgTgL6i7pOVpCAix7j9ae1qawWweRXfaY7OwGwLFzEr5KSNVP5sEMBMejpNYcp_OZ46GGBHfhfEuJZ8YGEyDfX_epK2dBydSpF5aHDmg-zRWKPW?key=5s4uctNlhIiDpaDERL6yY-Xg)**
+- **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcn4BnQ6DmN4nqMxo8TMKZSuWgTgL6i7pOVpCAix7j9ae1qawWweRXfaY7OwGwLFzEr5KSNVP5sEMBMejpNYcp_OZ46GGBHfhfEuJZ8YGEyDfX_epK2dBydSpF5aHDmg-zRWKPW?key=5s4uctNlhIiDpaDERL6yY-Xg)**
 ## NIVEL 3 (HATEOAS)
 Permite que las API REST incluyan enlaces a recursos relacionados en sus respuestas. Esto evita que el cliente tenga que conocer todas las URLs manualmente.
 
