@@ -3,6 +3,7 @@
 REST (Representational State Transfer) es un ESTILO de Arquitectura a la hora de realizar una comunicación entre cliente y servidor.
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeVPgJz5iiuy5xU37qRsClby3lGHJYfSRnNI2X-816c1Uth2AJht7wQOes33PpFbSMIUVdIBu4z0mWezyl1SW9kJ4sUoGsXLAhNorE6I3QFLycUL0uEYCoWI7f1T1hW5io7550H?key=5s4uctNlhIiDpaDERL6yY-Xg)**
+
 Cuando nosotros realizamos una comunicación cliente-servidor, le enviamos una información y recibimos un resultado.
 
 ## NIVEL 0
