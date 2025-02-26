@@ -5,7 +5,7 @@ REST (Representational State Transfer) es un ESTILO de Arquitectura a la hora de
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeVPgJz5iiuy5xU37qRsClby3lGHJYfSRnNI2X-816c1Uth2AJht7wQOes33PpFbSMIUVdIBu4z0mWezyl1SW9kJ4sUoGsXLAhNorE6I3QFLycUL0uEYCoWI7f1T1hW5io7550H?key=5s4uctNlhIiDpaDERL6yY-Xg)**
 Cuando nosotros realizamos una comunicación cliente-servidor, le enviamos una información y recibimos un resultado.
 
-> ## NIVEL 0
+## NIVEL 0
 
 Podemos mandar a un servicio un mensaje en formato **XML o JSON**. El servicio lo recepcionará y nos devolverá una respuesta.
 
@@ -13,7 +13,7 @@ Esto es lo que habitualmente en Arquitecturas REST se denomina el nivel 0. No te
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXemhuXDZZh8gsmNpO2Z7QbJDQAJX5r4VsttLJvgFffYqYRq_BrdqxOF2M_i5VbsCFJ-yHhaSZFGTEGdF-7DTmVTqBYdlQh-eBZa5UKoMQwMUeDZ-5aOs0BixxIftnteKt55HMP7?key=5s4uctNlhIiDpaDERL6yY-Xg)**
 
-> ## NIVEL 1 (Recursos)
+## NIVEL 1 (Recursos)
 
 En vez de tener servicios con métodos diversos **declaramos Recursos**.
 
