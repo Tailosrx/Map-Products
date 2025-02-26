@@ -12,6 +12,7 @@ Podemos mandar a un servicio un mensaje en formato **XML o JSON**. El servicio l
 Esto es lo que habitualmente en Arquitecturas REST se denomina el nivel 0. No tenemos **ningún tipo de organización. Es el caos.**
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXemhuXDZZh8gsmNpO2Z7QbJDQAJX5r4VsttLJvgFffYqYRq_BrdqxOF2M_i5VbsCFJ-yHhaSZFGTEGdF-7DTmVTqBYdlQh-eBZa5UKoMQwMUeDZ-5aOs0BixxIftnteKt55HMP7?key=5s4uctNlhIiDpaDERL6yY-Xg)**
+
 **Petición GET** (sin un recurso claro):
 ````sql
 GET /alumno
