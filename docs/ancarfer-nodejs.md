@@ -27,12 +27,15 @@ Para instal·lar Node.js tenemos que seguir los siguientes pasos:
 
 Para instalar **Express** en tu proyecto de Node.js, sigue estos pasos:
 
-1. **Inicializar un proyecto de Node.js**: Primero, debes tener un proyecto de Node.js. Si aún no lo tienes, crea una carpeta para tu proyecto y abre la terminal dentro de esa carpeta. Luego, ejecuta el siguiente comando para inicializar un archivo `package.json`, el cual contendrá las dependencias y configuración del proyecto:`npm init -y`
+1. **Inicializar un proyecto de Node.js**: 
+Primero, debes tener un proyecto de Node.js. Si aún no lo tienes, crea una carpeta para tu proyecto y abre la terminal dentro de esa carpeta. Luego, ejecuta el siguiente comando para inicializar un archivo `package.json`, el cual contendrá las dependencias y configuración del proyecto:`npm init -y`
 
-2. **Instal·Lar Express**: Una vez tengamos inicializado el proyecto, instalamos _**Express**_ con el siguiente comando:`npm install express`
+2. **Instal·Lar Express**: 
+Una vez tengamos inicializado el proyecto, instalamos _**Express**_ con el siguiente comando:`npm install express`
 Este comando actualizara y generara tres elementos importantes:
 
-3. **Configurar el servidor**: Uan vez instalado _**Express**_ creamos un archivo que sera el indice principal: **index.js** agrega el siguiente código dentro para crear un servidor básico con Express:
+3. **Configurar el servidor**: 
+Uan vez instalado _**Express**_ creamos un archivo que sera el indice principal: **index.js** agrega el siguiente código dentro para crear un servidor básico con Express:
 
 ```javascript
 const express = require('express');
@@ -61,7 +64,7 @@ Para instalar Nodemon en tu sistema, ejecuta el siguiente comando en la terminal
 ```bash
 npm install nodemon -g
 ```
-###### 1. Uso de Nodemon:
+###### 1. Uso de Nodemon: 
 Una vez instalado Nodemon, puedes iniciar tu servidor con el siguiente comando:
 
 `nodemon ./index.js`
