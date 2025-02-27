@@ -1,5 +1,0 @@
-# Kevin Fetch
-
-> Fetch podria decirse que es un remplazo al XMLHttpRequest ya que este ultimo hace lo que permite la 
-API Fetch pero mas limitada. (Fetch puede usarse en mas tecnologias y hace mas comodo la manipulacion
-de peticiones y respuestas).
