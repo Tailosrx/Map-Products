@@ -75,28 +75,14 @@ Esto facilita el desarrollo y te ahorra tiempo al no tener que reiniciar manualm
 
 ## ¿Qué es CRUD?
 
-CRUD es un acrónimo que representa las cuatro operaciones básicas que se pueden realizar en una base de datos:
+CRUD representa las cuatro operaciones básicas que se pueden realizar en una base de datos:
 
 - **Create**: Insertar nuevos registros en la base de datos.
 - **Read**: Obtener datos almacenados.
 - **Update**: Modificar datos existentes.
 - **Delete**: Eliminar registros de la base de datos.
 
-#### Implementación de CRUD con Express y una Base de Datos
+#### Implementación de CRUD con Express y PostgreSQL
 
-Para manejar una base de datos en un servidor **Node.js con Express**, normalmente se usa una **base de datos relacional (MySQL, PostgreSQL)** o una **base de datos NoSQL (MongoDB)**.
-
-A continuación, se muestra un ejemplo de un CRUD utilizando **Express** y **MongoDB con Mongoose**.
-
-1. **Configuración del Proyecto**
-
-Si aún no tienes un proyecto de **Node.js** con **Express**, sigue estos pasos:
-
-```bash
-mkdir mi-proyecto
-cd mi-proyecto
-npm init -y
-npm install express mongoose
-
-
+Para manejar una base de datos **PostgreSQL** en un servidor **Node.js con Express**, utilizaremos el paquete `pg` para conectarnos a la base de datos.
 
