@@ -66,8 +66,10 @@ npm install nodemon -g
 ```
 ###### 1. Uso de Nodemon: 
 Una vez instalado Nodemon, puedes iniciar tu servidor con el siguiente comando:
+```bash
+nodemon ./index.js
+```
 
-`nodemon ./index.js`
 Con esto, Nodemon ejecutará tu servidor y lo reiniciará automáticamente cada vez que hagas un cambio en tu código. 
 Esto facilita el desarrollo y te ahorra tiempo al no tener que reiniciar manualmente el servidor después de cada modificación.
 
