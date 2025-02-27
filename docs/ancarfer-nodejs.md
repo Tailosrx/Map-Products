@@ -52,7 +52,7 @@ app.listen(3000, () => {
 });
 ```
 
-4.**Ejecutar el servidor**: Para iniciar el servidor, ejecuta el siguiente comando en la terminal: `node index.js`
+4. **Ejecutar el servidor**: Para iniciar el servidor, ejecuta el siguiente comando en la terminal: `node index.js`
 Si todo esta correcto nos saldra _**Servidor corriendo en puerto 3000**_
 
 5. **Verificar en el navegador**: Abre tu navegador y ve a http://localhost:3000. Si todo está configurado correctamente, verás el mensaje _**¡Hola, mundo!**_.
