@@ -14,7 +14,6 @@ Express es un _**framework**_ para **Node.js** que facilita la creación de **ap
 
 ### Instalación de Node.js
 
-
 Para instal·lar Node.js tenemos que seguir los siguientes pasos:
 
 1. **Descargar Node.js**: Ve a la página oficial de [Node.js](https://nodejs.org/) y descarga la versión recomendada (LTS).
@@ -53,8 +52,46 @@ app.listen(3000, () => {
 4.**Ejecutar el servidor**: Para iniciar el servidor, ejecuta el siguiente comando en la terminal: `node index.js`
 Si todo esta correcto nos saldra _**Servidor corriendo en puerto 3000**_
 
+5. **Verificar en el navegador**: Abre tu navegador y ve a http://localhost:3000. Si todo está configurado correctamente, verás el mensaje _**¡Hola, mundo!**_.
+6. **Actualización automática con Nodemon**: Para evitar tener que reiniciar manualmente el servidor cada vez que hagas un cambio en tu código, puedes usar una herramienta llamada **Nodemon**. Nodemon monitorea los cambios en tu aplicación y reinicia automáticamente el servidor cuando detecta modificaciones.
 
+###### 1. Instalación de Nodemon
 
+Para instalar Nodemon en tu sistema, ejecuta el siguiente comando en la terminal:
+```bash
+npm install nodemon -g
+```
+###### 1. Uso de Nodemon:
+Una vez instalado Nodemon, puedes iniciar tu servidor con el siguiente comando:
+
+`nodemon ./index.js`
+Con esto, Nodemon ejecutará tu servidor y lo reiniciará automáticamente cada vez que hagas un cambio en tu código. 
+Esto facilita el desarrollo y te ahorra tiempo al no tener que reiniciar manualmente el servidor después de cada modificación.
+
+## ¿Qué es CRUD?
+
+CRUD es un acrónimo que representa las cuatro operaciones básicas que se pueden realizar en una base de datos:
+
+- **Create**: Insertar nuevos registros en la base de datos.
+- **Read**: Obtener datos almacenados.
+- **Update**: Modificar datos existentes.
+- **Delete**: Eliminar registros de la base de datos.
+
+#### Implementación de CRUD con Express y una Base de Datos
+
+Para manejar una base de datos en un servidor **Node.js con Express**, normalmente se usa una **base de datos relacional (MySQL, PostgreSQL)** o una **base de datos NoSQL (MongoDB)**.
+
+A continuación, se muestra un ejemplo de un CRUD utilizando **Express** y **MongoDB con Mongoose**.
+
+1. **Configuración del Proyecto**
+
+Si aún no tienes un proyecto de **Node.js** con **Express**, sigue estos pasos:
+
+```bash
+mkdir mi-proyecto
+cd mi-proyecto
+npm init -y
+npm install express mongoose
 
 
 
