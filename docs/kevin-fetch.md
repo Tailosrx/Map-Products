@@ -74,11 +74,15 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
     
     fetch(request)
     .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-
-
+    .then(data => console.log('Datos obtenidos:', data))
+    .catch(error => console.error('Error en la petición:', error));
     }
+
+> En este ejemplo:
+- Se usa `new Request()` para definir una solicitud personalizada
+- Se agregan `Headers` con `Content-Type: application/json`
+- Se ejecuta `fetch(request)`, obteniendo la respuesta en formato JSON
+    
 
 ## Ejemplo con Response
 
@@ -90,6 +94,11 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
     })
     .then(data => console.log('Data: ', data))
     .catch(error => console.error('Error:', error));
+
+> En este ejemplo:
+- Se imprime el `status` (si sale `200` significa que ha habido exito)
+- Se accede a `headers` para ver las cabeceras HTTP de la respuesta
+- Se convierte la respuesta en JSON y se muestra en consola
 
 ## Ejemplo con Headers Personalizados
 
@@ -104,10 +113,35 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error: ', error));
+    
+> En este ejemplo:
+- Se crean `Headers` y se agregan `Content-Type` y `Authorization`.
+- `Authorization` se usa para enviar un token de autenticación (`Bearer token123`).
+- Se realiza una petición `GET` con estos encabezados.
 
 ## Ejemplo con Body
 
-    fetch('https://jsonplaceholde'
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: 'Nuevo Post',
+	body: 'Este es el contenido del post',
+        userId: 1
+      })
+     })
+     .then(response => response.json())
+     .then(data => console.log('Post creado:', data))
+     .catch(error => console.error('Error:', error));
+
+> En este ejemplo:
+- Se envían datos en formato JSON con `body: JSON.stringify({...})`
+- Se especifica en los `headers` que el contenido es `application/json`
+- Se maneja la respuesta con `then()` y errores con `catch()`
+  
+
 
  > Las acciones que puedes hacer son recuperar, establecer, agregar i eliminar cabeceras de la lista de la lista de cabeceras de la solicitud.
 
