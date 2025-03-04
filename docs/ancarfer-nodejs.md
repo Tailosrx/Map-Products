@@ -131,7 +131,8 @@ app.get('/productos', async (req, res) => {
     res.status(500).send('Error en el servidor');
   }
 });
-
+```
+```javascript
 // Agregar un nuevo producto
 app.post('/productos', async (req, res) => {
   try {
@@ -143,7 +144,8 @@ app.post('/productos', async (req, res) => {
     res.status(500).send('Error en el servidor');
   }
 });
-
+```
+```javascript
 // Actualizar un producto
 app.put('/productos/:id', async (req, res) => {
   try {
@@ -156,7 +158,8 @@ app.put('/productos/:id', async (req, res) => {
     res.status(500).send('Error en el servidor');
   }
 });
-
+```
+```javascript
 // Eliminar un producto
 app.delete('/productos/:id', async (req, res) => {
   try {
@@ -173,8 +176,20 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en http://localhost:${PORT}`);
 });
-
 ```
 
+## 📝 Ejercicio Práctico  
 
+Crea una API con **Express** que implemente un CRUD para la tabla `products` de la base de datos **Northwind** en **PostgreSQL**.  
+
+#### Requisitos:  
+- Configurar un servidor con **Express**.  
+- Conectar con la base de datos usando el paquete `pg`.  
+- Implementar las rutas:  
+  - `GET /productos` → Obtener todos los productos.  
+  - `POST /productos` → Agregar un nuevo producto.  
+  - `PUT /productos/:id` → Actualizar un producto por su ID.  
+  - `DELETE /productos/:id` → Eliminar un producto por su ID.  
+
+Prueba los endpoints con **Postman** o `curl`. 
 
