@@ -86,3 +86,95 @@ CRUD representa las cuatro operaciones básicas que se pueden realizar en una ba
 
 Para manejar una base de datos **PostgreSQL** en un servidor **Node.js con Express**, utilizaremos el paquete `pg` para conectarnos a la base de datos.
 
+#### Instalación de `pg`  
+
+Antes de comenzar, necesitamos instalar el paquete que nos permitirá conectarnos a PostgreSQL:  
+
+```sh
+npm install pg
+```
+#### Configuración de la conexión a PostgreSQL
+
+Creamos un archivo `db.js` donde configuramos la conexión a la base de datos:
+```javascript
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user: 'tu_usuario',
+  host: 'localhost',
+  database: 'northwind',
+  password: 'tu_contraseña',
+  port: 5432,
+});
+
+module.exports = pool;
+```
+
+#### Creación de las rutas CRUD en Express
+
+En nuestro archivo principal (**index.js** o **app.js**), importamos Express y configuramos las rutas para manejar los datos de la base de datos.
+
+```javascript
+const express = require('express');
+const pool = require('./db');
+
+const app = express();
+app.use(express.json()); // Permite recibir JSON en las peticiones
+
+// Obtener todos los productos
+app.get('/productos', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM products');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error en el servidor');
+  }
+});
+
+// Agregar un nuevo producto
+app.post('/productos', async (req, res) => {
+  try {
+    const { product_name, price } = req.body;
+    await pool.query('INSERT INTO products (product_name, price) VALUES ($1, $2)', [product_name, price]);
+    res.status(201).send('Producto agregado');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error en el servidor');
+  }
+});
+
+// Actualizar un producto
+app.put('/productos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { product_name, price } = req.body;
+    await pool.query('UPDATE products SET product_name = $1, price = $2 WHERE product_id = $3', [product_name, price, id]);
+    res.send('Producto actualizado');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error en el servidor');
+  }
+});
+
+// Eliminar un producto
+app.delete('/productos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pool.query('DELETE FROM products WHERE product_id = $1', [id]);
+    res.send('Producto eliminado');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error en el servidor');
+  }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor en ejecución en http://localhost:${PORT}`);
+});
+
+```
+
+
+
