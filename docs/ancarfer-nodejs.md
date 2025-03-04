@@ -189,7 +189,4 @@ Crea una API con **Express** que implemente un CRUD para la tabla `products` de 
   - `GET /productos` → Obtener todos los productos.  
   - `POST /productos` → Agregar un nuevo producto.  
   - `PUT /productos/:id` → Actualizar un producto por su ID.  
-  - `DELETE /productos/:id` → Eliminar un producto por su ID.  
-
-Prueba los endpoints con **Postman** o `curl`. 
-
+  - `DELETE /productos/:id` → Eliminar un producto por su ID.
