@@ -145,7 +145,7 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
 
 # Ejercicio 
 
-> Haz una peticion `GET` a la API `https://jsonplaceholder.typicode.com/users`. Y muesta en pantalla el *nombre* y el *correo* de los primeros 5 usuarios. De manera opcional, puedes probar a mostrar la *ciudad* o el *telefono* del usuario.
+> Haz una peticion `GET` a la API `https://dog.ceo/api/breeds/image/random` para obtener una imagen aleatoria de un perro y mostrarla en un `index.html`. 
 
   
 
