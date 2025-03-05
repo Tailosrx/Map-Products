@@ -147,7 +147,7 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
 
 > Haz una peticion `GET` a la API `https://dog.ceo/api/breeds/list/all` para obtener una imagen aleatoria de un perro y mostrarla en un `index.html`. 
 
-> Despues muestra 
+> Despues muestra los perros que sean unicamente de estas razas: `briard`, `bulldog` y `mix`
 
   
 
