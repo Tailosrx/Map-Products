@@ -136,9 +136,136 @@ GET /alumno/1/cursos
 
 - **Con HATEOAS**: El servidor incluye los enlaces en la respuesta, y el cliente sigue esos enlaces sin tener que saber las URLs de antemano.
 
+
 # EJERCICIO CON REST
 
-Para este ejercicio, he creado una pequeña aplicación con datos. Abre Postman y haz los siguientes ejercicios:
+Para este ejercicio, he creado una pequeña aplicación con node para poder acceder a los datos a través de **Postman**.
+
+Te dejo el código para que puedas copiar y pegarlo en un archivo .js, dentro de un proyecto Node.
+Después de tener todo instalado puedes hacer ‘node nombre.js’ para hacer correr el servidor y probar que funciona todo.
+
+````javascript
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Datos simulados (en un caso real estarían en una base de datos)
+let alumnos = [
+  { id: 1, nombre: 'Carlos Díaz', edad: 23 },
+  { id: 2, nombre: 'María López', edad: 22 },
+  { id: 3, nombre: 'Luis Fernández', edad: 24 }
+];
+
+// Middleware para parsear el cuerpo de la solicitud (body parser)
+app.use(express.json());
+
+// Ruta para la página principal
+app.get('/', (req, res) => {
+  res.send('¡Bienvenido a la API de alumnos!');
+});
+
+// Ruta para obtener todos los alumnos (GET)
+app.get('/alumnos', (req, res) => {
+  const response = {
+    alumnos: alumnos.map(alumno => ({
+      id: alumno.id,         // Asegúrate de incluir el id
+      nombre: alumno.nombre, // Asegura que se incluya el nombre
+      edad: alumno.edad,     // Asegura que se incluya la edad
+      _links: {
+        self: { href: `http://localhost:${port}/alumno/${alumno.id}` }
+      }
+    })),
+    _links: {
+      self: { href: `http://localhost:${port}/alumnos` }
+    }
+  };
+
+  console.log('Alumnos listados:', response);  // Imprimir para verificar en consola
+
+  res.json(response);
+});
+
+// Ruta para obtener un alumno por ID (GET)
+app.get('/alumno/:id', (req, res) => {
+  const alumno = alumnos.find(a => a.id === parseInt(req.params.id));
+  if (!alumno) {
+    return res.status(404).send('Alumno no encontrado');
+  }
+
+  const response = {
+    id: alumno.id,
+    nombre: alumno.nombre,
+    edad: alumno.edad,
+    _links: {
+      self: { href: `http://localhost:${port}/alumno/${alumno.id}` },
+      all_alumnos: { href: `http://localhost:${port}/alumnos` }
+    }
+  };
+
+  console.log('Alumno encontrado:', response);  // Imprimir para verificar en consola
+
+  res.json(response);
+});
+
+// Ruta para agregar un nuevo alumno (POST)
+app.post('/alumnos', (req, res) => {
+  const { nombre, edad } = req.body;
+
+  // Verificar si los campos nombre y edad están presentes
+  if (!nombre || !edad) {
+    return res.status(400).send('Faltan los campos nombre o edad');
+  }
+
+  // Crear un nuevo alumno con todos los campos
+  const nuevoAlumno = {
+    id: alumnos.length + 1, // Asignar un ID único
+    nombre,
+    edad
+  };
+
+  // Agregar el nuevo alumno a la lista
+  alumnos.push(nuevoAlumno);
+
+  console.log('Nuevo alumno agregado:', nuevoAlumno);  // Verificar en consola
+
+  // Responder con el nuevo alumno
+  res.status(201).json(nuevoAlumno);
+});
+
+// Ruta para actualizar un alumno por ID (PUT)
+app.put('/alumno/:id', (req, res) => {
+  const alumno = alumnos.find(a => a.id === parseInt(req.params.id));
+  if (!alumno) {
+    return res.status(404).send('Alumno no encontrado');
+  }
+
+  const { nombre, edad } = req.body;
+
+  if (nombre) alumno.nombre = nombre;
+  if (edad) alumno.edad = edad;
+
+  res.json(alumno);
+});
+
+// Ruta para eliminar un alumno por ID (DELETE)
+app.delete('/alumno/:id', (req, res) => {
+  const alumnoIndex = alumnos.findIndex(a => a.id === parseInt(req.params.id));
+  if (alumnoIndex === -1) {
+    return res.status(404).send('Alumno no encontrado');
+  }
+
+  // Eliminar el alumno de la lista
+  alumnos.splice(alumnoIndex, 1);
+  res.status(204).send(); // Responde sin contenido, ya que el recurso fue eliminado
+});
+
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
+````
+
+## Ejercicios Prácticos
 
 1.  **GET**: Obtén la lista de todos los alumnos.
     
@@ -151,4 +278,3 @@ Para este ejercicio, he creado una pequeña aplicación con datos. Abre Postman 
 5.  **PUT**: Actualiza el alumno que has creado y súmale 1 año.
     
 6.  **DELETE**: Elimina el alumno que has creado.
-7.  
