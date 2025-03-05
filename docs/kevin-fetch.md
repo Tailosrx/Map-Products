@@ -141,6 +141,8 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
 - Se especifica en los `headers` que el contenido es `application/json`
 - Se maneja la respuesta con `then()` y errores con `catch()`
 
+> Las acciones que puedes hacer son recuperar, establecer, agregar i eliminar cabeceras de la lista de la lista de cabeceras de la solicitud.
+
 ---
 
 # Ejercicio 
@@ -152,7 +154,7 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
   
 
 
- > Las acciones que puedes hacer son recuperar, establecer, agregar i eliminar cabeceras de la lista de la lista de cabeceras de la solicitud.
+ 
 
 
 
