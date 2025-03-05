@@ -135,3 +135,20 @@ GET /alumno/1/cursos
   
 
 - **Con HATEOAS**: El servidor incluye los enlaces en la respuesta, y el cliente sigue esos enlaces sin tener que saber las URLs de antemano.
+
+# EJERCICIO CON REST
+
+Para este ejercicio, he creado una pequeña aplicación con datos. Abre Postman y haz los siguientes ejercicios:
+
+1.  **GET**: Obtén la lista de todos los alumnos.
+    
+2. **GET**: Obtén los datos del alumno con id 2.
+    
+3.  **GET**: Obtén los datos de un alumno que no existe.
+    
+4.  **POST**: Crea un nuevo alumno enviando su nombre y edad en formato JSON  (Recuerda que el id se genera solo, así que define solamente nombre y edad).
+    
+5.  **PUT**: Actualiza el alumno que has creado y súmale 1 año.
+    
+6.  **DELETE**: Elimina el alumno que has creado.
+7.  
