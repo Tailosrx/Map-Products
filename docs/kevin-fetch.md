@@ -145,7 +145,9 @@ Se puede usar `fetch()` con `then/catch` o con `async/await`. La segunda opción
 
 # Ejercicio 
 
-> Haz una peticion `GET` a la API `https://dog.ceo/api/breeds/image/random` para obtener una imagen aleatoria de un perro y mostrarla en un `index.html`. 
+> Haz una peticion `GET` a la API `https://dog.ceo/api/breeds/list/all` para obtener una imagen aleatoria de un perro y mostrarla en un `index.html`. 
+
+> Despues muestra 
 
   
 
