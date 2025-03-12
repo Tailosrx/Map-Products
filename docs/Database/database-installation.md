@@ -1,7 +1,7 @@
 # 📌 Instalación de la Base de Datos Northwind en PostgreSQL
 
 ## 📂 Ubicación del archivo SQL
-El archivo de la base de datos `northwind.sql` se encuentra en el siguiente directorio dentro del repositorio:
+El archivo de la base de datos `northwind.postgre.sql` se encuentra en el siguiente directorio dentro del repositorio:
 
 📁 docs/ └── 📁 database/ └── northwind.postgre.sql
 
