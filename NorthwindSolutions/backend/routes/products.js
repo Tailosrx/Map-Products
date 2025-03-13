@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import pg from 'pg';
-import dbconnection from '../../dbconnection';
+import dbconnection from '../../dbconnection.js';
 
 const router = Router();
 

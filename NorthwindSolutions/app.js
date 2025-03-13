@@ -1,9 +1,11 @@
-const { Pool } = require('pg');
+import { Pool } from 'pg';
 import express from 'express';
-import dbconnection from './dbconnection';
+import dbconnection from './dbconnection.js';
+const PORT = process.env.PORT || 3000;
+
 // import pg from 'pg';
 // import cors from 'cors';
-import product from './backend/routes/products';
+import product from './backend/routes/products.js';
 
 const app = express();
 
