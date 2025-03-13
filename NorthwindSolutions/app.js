@@ -1,21 +1,16 @@
-import { Pool } from 'pg';
 import express from 'express';
 import dbconnection from './dbconnection.js';
-const PORT = process.env.PORT || 3000;
-
+import product from './backend/routes/products.js';
+const PORT = 3000;
+// const { Pool } = pkg;
 // import pg from 'pg';
 // import cors from 'cors';
-import product from './backend/routes/products.js';
 
 const app = express();
-
-const pool = new Pool(dbconnection);
-
 
 // app.use(cors({origin: '*'}));
 app.use(express.static('public'));
 // app.use(express.json());
-
 app.use('/products', product);
 
 app.listen(PORT, () => {

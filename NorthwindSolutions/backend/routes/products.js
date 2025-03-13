@@ -19,6 +19,14 @@ router.get('/', async (req, res) => {
     await pgClient.end();
 });
 
+// router.get('/:id', async (req, res) => {
+//     let pgClient = new pg.Client(dbconnection);
+//     await pgClient.connect();
+//     let query = await pgClient.query(`SELECT * FROM products WHERE productid = ${req.params.id}`);
+//     res.json(query.rows);
+//     await pgClient.end();
+// });
+
 
 
 
