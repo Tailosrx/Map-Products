@@ -1,7 +1,9 @@
 import express from 'express';
 import dbconnection from './dbconnection.js';
+//TODO: import routes
 import product from './backend/routes/products.js';
 import customers from './backend/routes/customers.js';
+
 const PORT = 3000;
 // const { Pool } = pkg;
 // import pg from 'pg';
