@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            column-gap: 50px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Agregar Producto</h2>
+        <form id="productForm" class="form-grid">
+            <div class="form-group full-width">
+                <label for="productName">Nombre:</label>
+                <input type="text" id="productName" name="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="SupplierId">Proveedor:</label>
+                <select id="SupplierId" name="SupplierId" required></select>
+            </div>
+            <div class="form-group">
+                <label for="CategoryID">Categoría:</label>
+                <select id="CategoryID" name="CategoryID" required></select>
+            </div>
+            <div class="form-group">
+                <label for="quantityPerUnit">Cantidad por Unidad:</label>
+                <input type="text" id="quantityPerUnit" name="quantityPerUnit">
+            </div>
+            <div class="form-group">
+                <label for="unitPrice">Precio por Unidad:</label>
+                <input type="number" id="unitPrice" name="unitPrice" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="unitsInStock">Unidades en Stock:</label>
+                <input type="number" id="unitsInStock" name="unitsInStock">
+            </div>
+            <div class="form-group">
+                <label for="unitsOnOrder">Unidades en Pedido:</label>
+                <input type="number" id="unitsOnOrder" name="unitsOnOrder">
+            </div>
+            <div class="form-group full-width">
+                <label for="discontinued">Descontinuado:</label>
+                <input type="checkbox" id="discontinued" name="discontinued">
+            </div>
+            <button type="submit" class="full-width">Guardar Producto</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const supplierSelect = document.getElementById("SupplierID");
+            const categorySelect = document.getElementById("CategoryID");
+    
+            try {
+                const suppliersRes = await fetch("/suppliers");
+                if (!suppliersRes.ok) {
+                    throw new Error("Error al obtener proveedores");
+                }
+                const suppliers = await suppliersRes.json();
+                console.log("Proveedores obtenidos:", suppliers);
+                suppliers.forEach(supplier => {
+                    let option = document.createElement("option");
+                    option.value = supplier.SupplierID;
+                    option.textContent = supplier.CompanyName;
+                    supplierSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error cargando proveedores:", error);
+            }
+    
+            try {
+                const categoriesRes = await fetch("/categories");
+                if (!categoriesRes.ok) {
+                    throw new Error("Error al obtener categorías");
+                }
+                const categories = await categoriesRes.json();
+                categories.forEach(category => {
+                    let option = document.createElement("option");
+                    option.value = category.CategoryID;
+                    option.textContent = category.CategoryName;
+                    categorySelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error cargando categorías:", error);
+            }
+        });
+    </script>    
+</body>
+</html>
