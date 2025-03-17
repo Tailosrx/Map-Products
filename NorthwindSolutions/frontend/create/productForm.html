@@ -108,7 +108,7 @@
             const categorySelect = document.getElementById("CategoryID");
     
             try {
-                const suppliersRes = await fetch("http://localhost:3000/suppliers");
+                const suppliersRes = await fetch("/suppliers");
                 if (!suppliersRes.ok) {
                     throw new Error("Error al obtener proveedores");
                 }
