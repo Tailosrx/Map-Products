@@ -3,7 +3,7 @@ import dbconnection from './dbconnection.js';
 import product from './backend/routes/products.js';
 import customers from './backend/routes/customers.js';
 import suppliers from './backend/routes/suppliers.js';
-import suppliers from './backend/routes/categories.js';
+import categories from './backend/routes/categories.js';
 
 const PORT = 3000;
 // const { Pool } = pkg;
