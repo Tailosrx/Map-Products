@@ -71,12 +71,12 @@
                 <input type="text" id="productName" name="productName" required>
             </div>
             <div class="form-group">
-                <label for="supplierId">Proveedor:</label>
-                <select id="supplierId" name="supplierId" required></select>
+                <label for="SupplierId">Proveedor:</label>
+                <select id="SupplierId" name="SupplierId" required></select>
             </div>
             <div class="form-group">
-                <label for="categoryId">Categoría:</label>
-                <select id="categoryId" name="categoryId" required></select>
+                <label for="CategoryID">Categoría:</label>
+                <select id="CategoryID" name="CategoryID" required></select>
             </div>
             <div class="form-group">
                 <label for="quantityPerUnit">Cantidad por Unidad:</label>
@@ -113,7 +113,7 @@
                     throw new Error("Error al obtener proveedores");
                 }
                 const suppliers = await suppliersRes.json();
-                console.log("Proveedores obtenidos:", suppliers);  // Verifica la respuesta en la consola
+                console.log("Proveedores obtenidos:", suppliers);
                 suppliers.forEach(supplier => {
                     let option = document.createElement("option");
                     option.value = supplier.SupplierID;
