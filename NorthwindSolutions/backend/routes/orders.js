@@ -21,6 +21,22 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// app.post('/',(req,res)=>{
+//     const {name,id} = req.body
+
+//     const insert_query = 'INSERT INTO demotable (name,id) VALUES ($1, $2)'
+    
+//     con.query(insert_query, [name,id], (err, result)=>{
+//         if(err){
+//             res.send(err)
+//         }else{
+//             console.log(result)
+//             res.send("POSTED DATA")
+//         }
+//     })
+// });
+
+
 
 
 export default router;
