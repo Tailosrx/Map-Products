@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            column-gap: 50px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            background-color: #f9f9f9;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Agregar Pedido</h2>
+        <form id="orderForm" class="form-grid">
+            <div class="form-group">
+                <label for="customerId">Cliente:</label>
+                <select id="customerId" name="customerId" required></select>
+            </div>
+            <div class="form-group">
+                <label for="employeeId">Empleado:</label>
+                <select id="employeeId" name="employeeId" required></select>
+            </div>
+            <div class="form-group">
+                <label for="orderDate">Fecha del Pedido:</label>
+                <input type="date" id="orderDate" name="orderDate" required>
+            </div>
+            <div class="form-group">
+                <label for="requiredDate">Fecha Estimada de Entrega:</label>
+                <input type="date" id="requiredDate" name="requiredDate" required>
+            </div>
+            <div class="form-group">
+                <label for="shippedDate">Fecha de Envío:</label>
+                <input type="date" id="shippedDate" name="shippedDate">
+            </div>
+            <div class="form-group">
+                <label for="shipVia">Transportista:</label>
+                <input type="text" id="shipVia" name="shipVia">
+            </div>
+            <div class="form-group">
+                <label for="freight">Costo de Envío:</label>
+                <input type="number" id="freight" name="freight" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="shipName">Nombre de Envío:</label>
+                <input type="text" id="shipName" name="shipName">
+            </div>
+            <div class="form-group">
+                <label for="shipAddress">Dirección de Envío:</label>
+                <input type="text" id="shipAddress" name="shipAddress">
+            </div>
+            <div class="form-group">
+                <label for="shipCity">Ciudad de Envío:</label>
+                <input type="text" id="shipCity" name="shipCity">
+            </div>
+            <div class="form-group">
+                <label for="shipRegion">Región de Envío:</label>
+                <input type="text" id="shipRegion" name="shipRegion">
+            </div>
+            <div class="form-group">
+                <label for="shipPostalCode">Código Postal de Envío:</label>
+                <input type="text" id="shipPostalCode" name="shipPostalCode">
+            </div>
+            <div class="form-group">
+                <label for="shipCountry">País de Envío:</label>
+                <input type="text" id="shipCountry" name="shipCountry">
+            </div>
+            <button type="submit" class="full-width">Guardar Pedido</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const customerSelect = document.getElementById("customerId");
+            const employeeSelect = document.getElementById("employeeId");
+
+            try {
+                // Cargar los datos de clientes desde el archivo JSON
+                const customerResponse = await fetch("http://127.0.0.1:5500/NorthwindSolutions/data/customers.json");
+                if (!customerResponse.ok) {
+                    throw new Error("No se pudo cargar el archivo de clientes");
+                }
+
+                const customers = await customerResponse.json();
+                console.log("Clientes obtenidos:", customers);
+
+                // Llenar el desplegable de clientes
+                customers.forEach(customer => {
+                    let option = document.createElement("option");
+                    option.value = customer.CustomerID;
+                    option.textContent = customer.CompanyName;  // Nombre de la empresa del cliente
+                    customerSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error cargando clientes:", error);
+            }
+
+            try {
+                // Cargar los datos de empleados desde el archivo JSON
+                const employeeResponse = await fetch("http://127.0.0.1:5500/NorthwindSolutions/data/employees.json");
+                if (!employeeResponse.ok) {
+                    throw new Error("No se pudo cargar el archivo de empleados");
+                }
+
+                const employees = await employeeResponse.json();
+                console.log("Empleados obtenidos:", employees);
+
+                // Llenar el desplegable de empleados
+                employees.forEach(employee => {
+                    let option = document.createElement("option");
+                    option.value = employee.EmployeeID;
+                    option.textContent = `${employee.FirstName} ${employee.LastName}`;  // Nombre completo del empleado
+                    employeeSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error cargando empleados:", error);
+            }
+        });
+    </script>
+</body>
+</html>
