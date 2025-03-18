@@ -134,7 +134,7 @@
 
             try {
                 // Cargar los datos de proveedores desde el archivo JSON
-                const response = await fetch("data/suppliers.json");
+                const response = await fetch("http://127.0.0.1:5500/NorthwindSolutions/data/suppliers.json");
                 if (!response.ok) {
                     throw new Error("No se pudo cargar el archivo de proveedores");
                 }
@@ -154,7 +154,7 @@
             }
 
             try {
-                const categoriesRes = await fetch("/categories");
+                const categoriesRes = await fetch("http://127.0.0.1:5500/NorthwindSolutions/data/categories.json");
                 if (!categoriesRes.ok) {
                     throw new Error("Error al obtener categorías");
                 }
