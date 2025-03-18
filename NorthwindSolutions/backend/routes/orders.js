@@ -20,13 +20,16 @@ router.get('/:id', async (req, res) => {
     await pgClient.end();
 });
 
-app.post('/', async (req,res)=>{
+router.post('/', async (req,res)=>{
+    let pgClient = new pg.Client(dbconnection);
     await pgClient.connect();
     const data = req.body
 
-    const result = 'INSERT INTO orders (OrderID,CustomerID,EmployeeID,OrderDate,RequiredDate,ShippedDate,ShipVia,Freight,ShipName,ShipAddress,ShipCity,ShipRegion,ShipPostalCode,ShipCountry) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
-    [data.OrderID, data.CustomerID, data.EmployeeID, data.OrderDate, data.RequiredDate, data.ShippedDate, data.ShipVia, data.Freight, data.ShipName, data.ShipAddress, data.ShipCity, data.ShipRegion, data.ShipPostalCode, data.ShipCountry]
-    res.json({"message": "Producte insertat correctament"});
+    const result = await pgClient.query('insert into orders ("OrderID","CustomerID","EmployeeID","OrderDate","RequiredDate","ShippedDate","ShipVia","Freight","ShipName","ShipAddress","ShipCity","ShipRegion","ShipPostalCode","ShipCountry") values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
+        [data.OrderID, data.CustomerID, data.EmployeeID, data.OrderDate, data.RequiredDate, data.ShippedDate, data.ShipVia, data.Freight, data.ShipName, data.ShipAddress, data.ShipCity, data.ShipRegion, data.ShipPostalCode, data.ShipCountry])
+    // res.json(result.rows[0]);
+    res.json({message: "Producte insertat correctament", data: data});
+    await pgClient.end();
 });
 
 
