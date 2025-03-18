@@ -1,0 +1,3 @@
+GET http://localhost:3010/employees
+###
+GET http://localhost:3010/employees/1
