@@ -6,7 +6,6 @@ import customers from './backend/routes/customers.js';
 import suppliers from './backend/routes/suppliers.js';
 import categories from './backend/routes/categories.js';
 import employees from './backend/routes/employees.js';
-
 import orders from './backend/routes/orders.js';
 
 
