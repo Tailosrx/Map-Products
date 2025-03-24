@@ -17,7 +17,7 @@ const app = express();
 // app.use(cors({ origin: '*' }));
 app.use(express.static('frontend'));
 
-// API routes
+
 
 // app.use(cors({origin: '*'}));
 
