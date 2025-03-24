@@ -20,21 +20,17 @@ router.get('/:id', async (req, res) => {
     await pgClient.end();
 });
 
+router.post('/', async (req,res)=>{
+    let pgClient = new pg.Client(dbconnection);
+    await pgClient.connect();
+    const data = req.body
 
-// app.post('/',(req,res)=>{
-//     const {name,id} = req.body
-
-//     const insert_query = 'INSERT INTO demotable (name,id) VALUES ($1, $2)'
-    
-//     con.query(insert_query, [name,id], (err, result)=>{
-//         if(err){
-//             res.send(err)
-//         }else{
-//             console.log(result)
-//             res.send("POSTED DATA")
-//         }
-//     })
-// });
+    const result = await pgClient.query('insert into orders ("OrderID","CustomerID","EmployeeID","OrderDate","RequiredDate","ShippedDate","ShipVia","Freight","ShipName","ShipAddress","ShipCity","ShipRegion","ShipPostalCode","ShipCountry") values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
+        [data.OrderID, data.CustomerID, data.EmployeeID, data.OrderDate, data.RequiredDate, data.ShippedDate, data.ShipVia, data.Freight, data.ShipName, data.ShipAddress, data.ShipCity, data.ShipRegion, data.ShipPostalCode, data.ShipCountry])
+    // res.json(result.rows[0]);
+    res.json({message: "Producte insertat correctament", data: data});
+    await pgClient.end();
+});
 
 
 
