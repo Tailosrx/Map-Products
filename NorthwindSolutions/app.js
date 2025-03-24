@@ -27,7 +27,6 @@ app.use(express.static('public'));
 app.use(express.static('data'));
 // app.use(express.json());
 
-
 app.use('/products', product);
 app.use('/customers', customers);
 app.use('/suppliers', suppliers);
