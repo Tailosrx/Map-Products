@@ -1,0 +1,6 @@
+GET http://localhost:3000/employees
+###
+GET http://localhost:3000/employees/5
+###
+
+GET http://localhost:3000/employees/count
