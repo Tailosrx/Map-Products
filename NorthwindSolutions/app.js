@@ -16,7 +16,6 @@ const app = express();
 app.use(express.static('frontend'));
 
 // API routes
-=======
 // app.use(cors({origin: '*'}));
 app.use(express.static('public'));
 app.use(express.static('data'));
@@ -30,7 +29,7 @@ app.use('/employees', employees);
 
 // Creamos una ruta para la página principal (index3.html)
 app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, 'frontend', 'index3.html');
+  const filePath = path.join(__dirname, 'frontend', 'index.html');
   console.log('Serving file:', filePath);
   res.sendFile(filePath); // Serve the file directly
 });
