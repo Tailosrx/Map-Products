@@ -16,6 +16,12 @@ const app = express();
 app.use(express.static('frontend'));
 
 // API routes
+=======
+// app.use(cors({origin: '*'}));
+app.use(express.static('public'));
+app.use(express.static('data'));
+// app.use(express.json());
+
 app.use('/products', product);
 app.use('/customers', customers);
 app.use('/suppliers', suppliers);

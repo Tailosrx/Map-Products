@@ -12,41 +12,52 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
+    
         .container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 500px;
+            box-sizing: border-box;
         }
+    
         h2 {
             text-align: center;
             color: #333;
         }
+    
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             column-gap: 50px;
         }
+    
         .form-group {
             display: flex;
             flex-direction: column;
         }
+    
         label {
             font-weight: bold;
             margin-bottom: 5px;
         }
+    
         input, select {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-bottom: 15px;
         }
+    
         .full-width {
             grid-column: span 2;
         }
+    
         button {
             width: 100%;
             padding: 10px;
@@ -57,10 +68,24 @@
             cursor: pointer;
             margin-top: 15px;
         }
+    
         button:hover {
             background-color: #0056b3;
         }
+    
+        /* Estilos para las opciones desplegables */
+        select {
+            background-color: #f9f9f9;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
     </style>
+    
 </head>
 <body>
     <div class="container">
@@ -104,16 +129,20 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
-            const supplierSelect = document.getElementById("SupplierID");
+            const supplierSelect = document.getElementById("SupplierId");
             const categorySelect = document.getElementById("CategoryID");
-    
+
             try {
-                const suppliersRes = await fetch("/suppliers");
-                if (!suppliersRes.ok) {
-                    throw new Error("Error al obtener proveedores");
+                // Cargar los datos de proveedores desde el archivo JSON
+                const response = await fetch("http://127.0.0.1:5500/NorthwindSolutions/data/suppliers.json");
+                if (!response.ok) {
+                    throw new Error("No se pudo cargar el archivo de proveedores");
                 }
-                const suppliers = await suppliersRes.json();
+
+                const suppliers = await response.json();
                 console.log("Proveedores obtenidos:", suppliers);
+
+                // Llenar el desplegable de proveedores
                 suppliers.forEach(supplier => {
                     let option = document.createElement("option");
                     option.value = supplier.SupplierID;
@@ -123,9 +152,9 @@
             } catch (error) {
                 console.error("Error cargando proveedores:", error);
             }
-    
+
             try {
-                const categoriesRes = await fetch("/categories");
+                const categoriesRes = await fetch("http://127.0.0.1:5500/NorthwindSolutions/data/categories.json");
                 if (!categoriesRes.ok) {
                     throw new Error("Error al obtener categorías");
                 }
