@@ -521,7 +521,8 @@
                                     </ul>
                                 </div>
                                 <form class="au-form-icon--sm" action="" method="post">
-                                    <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+                                    <input class="au-input--w300 au-input--style2" type="text"
+                                        placeholder="Search for datas &amp; reports...">
                                     <button class="au-btn--submit2" type="submit">
                                         <i class="zmdi zmdi-search"></i>
                                     </button>
@@ -623,7 +624,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- END STATISTIC-->
 
             <!-- STATISTIC CHART-->
@@ -718,28 +719,12 @@
                             <h3 class="title-5 m-b-35">data table</h3>
                             <div class="table-data__tool">
                                 <div class="table-data__tool-left">
-                                    <div class="rs-select2--light rs-select2--md">
-                                        <select class="js-select2" name="property">
-                                            <option selected="selected">All Properties</option>
-                                            <option value="">Option 1</option>
-                                            <option value="">Option 2</option>
-                                        </select>
-                                        <div class="dropDownSelect2"></div>
-                                    </div>
-                                    <div class="rs-select2--light rs-select2--sm">
-                                        <select class="js-select2" name="time">
-                                            <option selected="selected">Today</option>
-                                            <option value="">3 Days</option>
-                                            <option value="">1 Week</option>
-                                        </select>
-                                        <div class="dropDownSelect2"></div>
-                                    </div>
                                     <button class="au-btn-filter">
                                         <i class="zmdi zmdi-filter-list"></i>filters</button>
                                 </div>
                                 <div class="table-data__tool-right">
-                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                        <i class="zmdi zmdi-plus"></i>add item</button>
+                                    <button id="add-btn" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                        <i class="zmdi zmdi-plus"></i>Add Employee</button>
                                 </div>
                             </div>
                             <div class="table-responsive table-responsive-data2">
@@ -756,7 +741,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
+
                                     </tbody>
                                 </table>
                             </div>
@@ -766,39 +751,55 @@
             </section>
             <!-- END DATA TABLE-->
 
-             <!-- TEST-->
+            <!-- Modal-->
+            <div id="employee-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" id="close-modal">&times;</span>
+                    <h2 id="modal-title">Add/Edit Employee</h2>
+                    <form id="employee-form">
+                        <input type="hidden" id="employee-id" />
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" required />
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" required />
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" required />
+                        <label for="hire-date">Hire Date:</label>
+                        <input type="date" id="hire-date" required />
+                        <label for="city">City:</label>
+                        <input type="text" id="city" required />
+                        <label for="region">Region:</label>
+                        <input type="text" id="region" required />
+                        <button type="submit" id="save-employee">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-            <h2>Test customers</h2>
-            <ul id="customers-list"></ul>
+        <!-- Jquery JS-->
+        <script src="vendor/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+        <!-- Vendor JS       -->
+        <script src="vendor/slick/slick.min.js">
+        </script>
+        <script src="vendor/wow/wow.min.js"></script>
+        <script src="vendor/animsition/animsition.min.js"></script>
+        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        </script>
+        <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="vendor/counter-up/jquery.counterup.min.js">
+        </script>
+        <script src="vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="vendor/select2/select2.min.js"></script>
+        </script>
 
-           
-
-    </div>
-
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
-    </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js"></script>
-    </script>
-
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
-    <script src="js/fetchEmployees.js"></script>
+        <!-- Main JS-->
+        <script src="js/main.js"></script>
+        <script src="js/fetchEmployees.js"></script>
 
 
 </body>

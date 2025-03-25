@@ -29,4 +29,21 @@ router.get('/count', async (req, res) => {
     await pgClient.end();
 });
 
+
+router.post('/', async (req, res) => {
+    const { LastName, FirstName, Title, HireDate, City, Region } = req.body;
+
+    try {
+        const query = `
+            INSERT INTO employees (LastName, FirstName, Title, HireDate, City, Region)
+            VALUES ($1, $2, $3, $4, $5, $6)
+        `;
+        await pgClient.query(query, [LastName, FirstName, Title, HireDate, City, Region]);
+        res.status(201).send('Employee created successfully');
+    } catch (error) {
+        console.error('Error creating employee:', error);
+        res.status(500).send('Failed to create employee');
+    }
+});
+
 export default router;
