@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     fillOrderTable();
 
-    const addEmployeeBtn = document.getElementById('add-employee-btn');
+    const addEmployeeBtn = document.getElementById('add-btn');
     const modal = document.getElementById('myDialog');
     const employeeForm = document.getElementById('employee-form');
 
