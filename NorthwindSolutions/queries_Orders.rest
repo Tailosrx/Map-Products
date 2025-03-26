@@ -10,8 +10,8 @@ POST http://localhost:3000/orders
 Content-Type: application/json
 
 {
-  "OrderID": 11081,
-  "CustomerID": "TORTU",
+  "OrderID": 1,
+  "CustomerID": "Hola",
   "EmployeeID": 5,
   "OrderDate": "1996-07-03T22:00:00.000Z",
   "RequiredDate": "1996-07-31T22:00:00.000Z",

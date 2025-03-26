@@ -48,6 +48,10 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
     box-sizing: border-box;
 }
 
+.fas {
+    cursor: pointer;
+}
+
 ul {
     margin: 0;
 }
@@ -268,7 +272,7 @@ section {
 /*Override Grid Bootstrap*/
 @media (min-width: 1200px) {
     .container {
-        max-width: 1320px;
+        max-width: 1300mm;
     }
 }
 
