@@ -45,10 +45,10 @@ router.post('/', async (req, res) => {
     try {
         // Usar parámetros preparados para evitar inyección de SQL
         const query = `
-            INSERT INTO employees (LastName, FirstName, Title, HireDate, City, Region)
-            VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING *;
-        `;
+    INSERT INTO employees ("LastName", "FirstName", "Title", "HireDate", "City", "Region")
+    VALUES ($1, $2, $3, $4, $5, $6)
+    RETURNING *;
+`;
         const values = [LastName, FirstName, Title, HireDate, City, Region];
         const result = await pgClient.query(query, values);
 
@@ -56,9 +56,8 @@ router.post('/', async (req, res) => {
         wrapper.data = result.rows[0];
         res.status(201).json(wrapper);
     } catch (error) {
-        console.error('Error creating employee:', error);
-
-        // Actualizar el wrapper con el mensaje de error
+        // Agregar un console.log para depurar el error
+        console.error('Error creating employee:', error); // Este es el punto 5
         wrapper.status = 'error';
         wrapper.errorText = 'Failed to create employee';
         res.status(500).json(wrapper);
