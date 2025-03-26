@@ -9,12 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('myDialog');
     const employeeForm = document.getElementById('employee-form');
 
-    // Abrir el modal al hacer clic en "Add item"
-    addEmployeeBtn.addEventListener('click', () => {
-        modal.showModal();
-    });
 
-    // Cerrar el modal al hacer clic en "Cancel"
     const closeModalBtn = document.getElementById('close-modal');
     closeModalBtn.addEventListener('click', () => {
         modal.close();

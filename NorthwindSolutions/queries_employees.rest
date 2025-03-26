@@ -4,3 +4,28 @@ GET http://localhost:3000/employees/5
 ###
 
 GET http://localhost:3000/employees/count
+
+###
+
+POST http://localhost:3000/employees
+Content-Type: application/json
+
+{
+    "EmployeeID": 10,
+    "LastName": "Kevin",
+    "FirstName": "Jimenez",
+    "Title": "Sales Representative",
+    "TitleOfCourtesy": "Mr.",
+    "BirthDate": "1990-01-01T00:00:00.000Z",
+    "HireDate": "2019-01-01T00:00:00.000Z",
+    "Address": "123 Main St",
+    "City": "Springfield",
+    "Region": "IL",
+    "PostalCode": "62701",
+    "Country": "USA",
+    "HomePhone": "217-555-1212",
+    "Extension": "123",
+    "Photo": "http://www.example.com/photo.jpg",
+    "Notes": "New employee",
+    "ReportsTo": 2
+}
