@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
             alert('Employee added successfully!');
-            modal.close();
+            modal.style.display = 'none';
             fillOrderTable(); 
         } else {
             alert('Failed to add employee.');

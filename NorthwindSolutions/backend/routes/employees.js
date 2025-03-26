@@ -29,7 +29,7 @@ router.get('/count', async (req, res) => {
     await pgClient.end();
 });
 
-
+// Si deja el profe cambiar el id para que sea autoincremental con GENERATED ALWAYS AS IDENTITY
 router.post('/', async (req, res) => {
     const { LastName, FirstName, Title, HireDate, City, Region } = req.body;
 
@@ -43,21 +43,21 @@ router.post('/', async (req, res) => {
     };
 
     try {
-        // Usar parámetros preparados para evitar inyección de SQL
+        const maxIdResult = await pgClient.query('SELECT MAX("EmployeeID") AS max_id FROM employees');
+        const nextEmployeeID = (maxIdResult.rows[0].max_id || 0) + 1;
+
         const query = `
-    INSERT INTO employees ("LastName", "FirstName", "Title", "HireDate", "City", "Region")
-    VALUES ($1, $2, $3, $4, $5, $6)
-    RETURNING *;
-`;
-        const values = [LastName, FirstName, Title, HireDate, City, Region];
+            INSERT INTO employees ("EmployeeID", "LastName", "FirstName", "Title", "HireDate", "City", "Region")
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING *;
+        `;
+        const values = [nextEmployeeID, LastName, FirstName, Title, HireDate, City, Region];
         const result = await pgClient.query(query, values);
 
-        // Asignar los datos del empleado recién creado
         wrapper.data = result.rows[0];
         res.status(201).json(wrapper);
     } catch (error) {
-        // Agregar un console.log para depurar el error
-        console.error('Error creating employee:', error); // Este es el punto 5
+        console.error('Error creating employee:', error);
         wrapper.status = 'error';
         wrapper.errorText = 'Failed to create employee';
         res.status(500).json(wrapper);
