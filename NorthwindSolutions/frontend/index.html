@@ -480,8 +480,8 @@
             </section>
             <!-- END WELCOME-->
 
-                        
-                       
+
+
             <!-- DATA TABLE-->
             <section class="p-t-20">
                 <div class="container">
@@ -517,6 +517,7 @@
             </section>
             <!-- END DATA TABLE-->
 
+
             <!-- Modal-->
             <div id="employee-modal" class="modal" style="display: none; height: 450px;">
                 <div class="modal-content">
@@ -536,11 +537,28 @@
                         <input type="text" id="city" required />
                         <label for="region">Region:</label>
                         <input type="text" id="region" required />
-                        <button type="submit" id="save-employee">Save</button>
+                        <button type="submit" id="save-employee"
+                            style="background-color: forestgreen; color: white;">Save</button>
                     </form>
                 </div>
             </div>
         </div>
+        <!---->
+        <!-- Modal Delete -->
+        <div id="delete-modal" class="modal" style="display: none; height: auto;">
+            <div class="modal-content">
+                <span class="close" id="close-delete-modal">&times;</span>
+                <h2 id="modal-title">Delete Employee</h2>
+                <h3 id="modal-confirm">Are you sure you want to delete this employee?</h3>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="confirm-delete"
+                        style="background-color: red; color: white; padding: 10px 20px; margin-right: 10px;">Yes</button>
+                    <button id="cancel-delete"
+                        style="background-color: gray; color: white; padding: 10px 20px;">No</button>
+                </div>
+            </div>
+        </div>
+        <!---->
 
         <!-- Jquery JS-->
         <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -571,4 +589,4 @@
 </body>
 
 </html>
-<!-- end document-->
+<!-- end document -->

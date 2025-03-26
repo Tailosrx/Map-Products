@@ -66,4 +66,28 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+router.delete('/:id', async (req, res) => {
+    const employeeId = req.params.id;
+    let pgClient = new pg.Client(dbconnection);
+    await pgClient.connect();
+
+
+    try {
+        const query = 'DELETE FROM employees WHERE "EmployeeID" = $1';
+        const result = await pgClient.query(query, [employeeId]);
+
+        if (result.rowCount > 0) {
+            res.status(200).send('Employee deleted successfully');
+        } else {
+            res.status(404).send('Employee not found');
+        }
+    } catch (error) {
+        console.error('Error deleting employee:', error);
+        res.status(500).send('Failed to delete employee');
+    } finally {
+        await pgClient.end();
+    }
+});
+
 export default router;
