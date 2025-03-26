@@ -10,7 +10,7 @@ POST http://localhost:3000/orders
 Content-Type: application/json
 
 {
-  "OrderID": 11080,
+  "OrderID": 11081,
   "CustomerID": "TORTU",
   "EmployeeID": 5,
   "OrderDate": "1996-07-03T22:00:00.000Z",
@@ -28,4 +28,8 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/orders/11078
+GET http://localhost:3000/orders/11081
+
+
+###
+PUT http://localhost:3000/orders/11081
