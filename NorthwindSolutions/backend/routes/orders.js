@@ -35,6 +35,17 @@ router.get('/employees', async (req, res)=>{
     await client.end();
 })
 
+
+router.delete('/:id', async(req, res)=>{
+    let client = new pg.Client(dbconnection);
+    await client.connect();
+    let result = await client.query(`DELETE FROM Orders where "OrderID" = $1;`, [req.params.id]);
+    res.json(result.rows);
+    await client.end();
+})
+
+
+
 router.get('/:id', async (req, res) => {
     let pgClient = new pg.Client(dbconnection);
     await pgClient.connect();

@@ -60,9 +60,16 @@ async function fillOrdersTable(limit) {
             <td>${order.ShipCountry}</td>
             <td>
                 <i class="fas fa-edit"></i>
-                <i class="fas fa-trash"></i>
+                <i class="fas fa-trash delete-btn" data-id="${order.OrderID}" style="cursor: pointer; color: red;"></i>
             </td>
         </tr>`
+    }
+    let deleteButton = document.querySelectorAll('.delete-btn');
+    for(let button of deleteButton){
+        button.addEventListener('click', () =>{
+            let orderID = button.getAttribute('data-id');
+            deleteOrder(orderID);
+        })
     }
 }
 
@@ -146,5 +153,19 @@ async function fillEmployeesDropdown() {
         option.value = employee.EmployeeID;
         option.textContent = `Employee ${employee.EmployeeID}`
         employeesSelect.appendChild(option);
+    }
+}
+
+
+async function deleteOrder(orderID) {
+    let response = await fetch(`/orders/${orderID}`,
+        {
+            method: 'DELETE'
+        });
+    let result = await response.json();
+    // alert(result);
+
+    if (response.ok) {
+        fillOrdersTable();
     }
 }
