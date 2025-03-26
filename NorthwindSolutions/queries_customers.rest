@@ -1,0 +1,57 @@
+###
+GET http://localhost:3000/customers
+
+###
+GET http://localhost:3000/customers/LAZYK
+
+{
+  "CustomerID": "LAZYK",
+  "CompanyName": "Lazy K Kountry Store",
+  "ContactName": "John Steel",
+  "ContactTitle": "Marketing Manager",
+  "Address": "12 Orchestra Terrace",
+  "City": "Walla Walla",
+  "Region": "WA",
+  "PostalCode": "99362",
+  "Country": "USA",
+  "Phone": "(509) 555-7969",
+  "Fax": "(509) 555-6221"
+}
+
+###
+POST http://localhost:3000/customers
+
+{
+    "CustomerID": "NEWID",
+    "CompanyName": "Tech Innovators Inc.",
+    "ContactName": "Alice Johnson",
+    "ContactTitle": "Chief Technology Officer",
+    "Address": "123 Innovation Drive",
+    "City": "Techville",
+    "Region": "CA",
+    "PostalCode": "94043",
+    "Country": "USA",
+    "Phone": "(650) 555-1234",
+    "Fax": "(650) 555-5678"
+}
+
+###
+GET http://localhost:3000/customers/NEWID
+
+
+###
+PUT http://localhost:3000/customers/NEWID
+
+{
+    "CustomerID": "TECHINN",
+    "CompanyName": "Tech Innovators Inc.",
+    "ContactName": "Alice Johnson",
+    "ContactTitle": "Chief Technology Officer",
+    "Address": "123 Innovation Drive",
+    "City": "Techville",
+    "Region": "CA",
+    "PostalCode": "94043",
+    "Country": "USA",
+    "Phone": "(650) 555-1234",
+    "Fax": "(650) 555-5678"
+}
