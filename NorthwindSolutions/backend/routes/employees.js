@@ -21,12 +21,29 @@ router.get('/:id', async (req, res) => {
     await pgClient.end();
 });
 
-router.get('/count', async (req, res) => {
-    let pgClient = new pg.Client(dbconnection);
-    await pgClient.connect();
-    let query = await pgClient.query('SELECT COUNT(*) AS total_employees FROM employees');
-    res.json(query.rows[0]) || res.status(404).json({ error: 'No se encontraron empleados' }); 
-    await pgClient.end();
+router.put('/:id', async (req, res) => {
+    const employeeId = req.params.id;
+    const { LastName, FirstName, Title, HireDate, City, Region } = req.body;
+
+    try {
+        const result = await db.query(
+            `UPDATE employees
+             SET "LastName" = $1, "FirstName" = $2, "Title" = $3, "HireDate" = $4, "City" = $5, "Region" = $6
+             WHERE "EmployeeID" = $7
+             RETURNING *`,
+            [LastName, FirstName, Title, HireDate, City, Region, employeeId]
+        );
+
+        if (result.rows.length > 0) {
+            res.json(result.rows[0]);
+        } else {
+            res.status(404).send('Employee not found');
+        }
+    } catch (error) {
+        console.error('Error updating employee:', error);
+        res.status(500).send('Failed to update employee');
+        
+    }
 });
 
 // Si deja el profe cambiar el id para que sea autoincremental con GENERATED ALWAYS AS IDENTITY

@@ -14,19 +14,11 @@ const PORT = 3000;
 
 const app = express();
 
-// import cors from 'cors';
-// app.use(cors({ origin: '*' }));
 app.use(express.static('frontend'));
 
-
-
-// app.use(cors({origin: '*'}));
-
-// app.use(express.static('public'));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static('data'));
-// app.use(express.json());
 
 app.use('/products', product);
 app.use('/customers', customers);
@@ -40,7 +32,7 @@ app.use('/orders', orders);
 app.get('/', (req, res) => {
   const filePath = path.join(__dirname, 'frontend', 'index.html');
   console.log('Serving file:', filePath);
-  res.sendFile(filePath); // Serve the file directly
+  res.sendFile(filePath); 
 });
 
 
