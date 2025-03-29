@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
-    await fillOrdersTable();
     await fillCustomerDropdown();
     await fillEmployeesDropdown();
+    await fillOrdersTable();
 
 });
 
@@ -33,7 +33,7 @@ async function fillOrdersTable(limit) {
             <td>${order.ShipPostalCode}</td>
             <td>${order.ShipCountry}</td>
             <td>
-                <i class="fas fa-edit edit-btn" data-id="${order.OrderID}" style="cursor: pointer; color: gray;"></i>
+                <i class="fas fa-edit edit-btn" data-id="${order.OrderID}"data-toggle="modal" data-target="#editOrderModal" style="cursor: pointer; color: gray;"></i>
                 <i class="fas fa-trash delete-btn" data-id="${order.OrderID}" style="cursor: pointer; color: red;"></i>
             </td>
         </tr>`
@@ -47,7 +47,13 @@ async function fillOrdersTable(limit) {
         })
     }
     //EDIT
-    
+    let editbutton = document.querySelectorAll('.edit-btn');
+    for(let button of editbutton){
+        button.addEventListener('click', ()=>{
+            let orderID = button.getAttribute('data-id');
+            loadOrderData(orderID);
+        });
+    }
 }
 
 function Recargar() {
@@ -104,7 +110,6 @@ async function saveOrder(order) {
 }
 
 
-
 async function fillCustomerDropdown() {
     let customerSelect = document.getElementById('customerID');
 
@@ -117,6 +122,7 @@ async function fillCustomerDropdown() {
         option.textContent = `Customer ${customer.CustomerID}`
         customerSelect.appendChild(option);
     }
+    console.log("Customers cargados:", customers);  // <-- VERIFICA LOS DATOS CARGADOS
 }
 
 async function fillEmployeesDropdown() {
@@ -131,6 +137,8 @@ async function fillEmployeesDropdown() {
         option.textContent = `Employee ${employee.EmployeeID}`
         employeesSelect.appendChild(option);
     }
+    console.log("Employees cargados:", employees);  // <-- VERIFICA LOS DATOS CARGADOS
+
 }
 
 
@@ -145,4 +153,95 @@ async function deleteOrder(orderID) {
     if (response.ok) {
         fillOrdersTable();
     }
+}
+
+async function loadOrderData(orderID) {
+    await fillCustomerDropdown();
+    await fillEmployeesDropdown();
+
+    let response = await fetch(`/orders/${orderID}`);
+    let order = await response.json();
+
+    function formatDate(dateString) {
+        if (!dateString) return ''; 
+        return dateString.split('T')[0]; 
+    }
+    console.log("Orden cargada:", order);  // <-- VERIFICA LOS DATOS RECIBIDOS
+
+
+    document.getElementById("editorderID").value = order.OrderID; 
+
+
+
+    document.getElementById("editcustomerID").value = order.CustomerID;
+    
+    for(let customer of customers){
+        const option = document.createElement("option");
+        option.value = customer.CustomerID;
+        option.textContent = `Customer ${customer.CustomerID}`
+        customerSelect.appendChild(option);
+    }
+
+
+
+    document.getElementById("editemployeeID").value = order.EmployeeID;
+
+
+
+    document.getElementById("editorderDate").value = formatDate(order.OrderDate);
+    document.getElementById("editrequiredDate").value = formatDate(order.RequiredDate);
+    document.getElementById("editshippedDate").value = formatDate(order.ShippedDate);
+    document.getElementById("editshipVia").value = order.ShipVia;
+    document.getElementById("editfreight").value = order.Freight;
+    document.getElementById("editshipName").value = order.ShipName;
+    document.getElementById("editshipAddress").value = order.ShipAddress;
+    document.getElementById("editshipCity").value = order.ShipCity;
+    document.getElementById("editshipRegion").value = order.ShipRegion;
+    document.getElementById("editshipPostalCode").value = order.ShipPostalCode;
+    document.getElementById("editshipCountry").value = order.ShipCountry;
+    
+}
+    let editBtn = document.getElementById('editOrderBtn');
+    editBtn.addEventListener('click', async () =>{
+        let order = {
+            "OrderID": document.getElementById("editorderID").value || null,
+            "CustomerID": document.getElementById("editcustomerID").value || null,
+            "EmployeeID": document.getElementById("editemployeeID").value || null,
+            "OrderDate": document.getElementById("editorderDate").value || null,
+            "RequiredDate": document.getElementById("editrequiredDate").value || null,
+            "ShippedDate": document.getElementById("editshippedDate").value || null,
+            "ShipVia": document.getElementById("editshipVia").value || null,
+            "Freight": document.getElementById("editfreight").value || null,
+            "ShipName": document.getElementById("editshipName").value || null,
+            "ShipAddress": document.getElementById("editshipAddress").value || null,
+            "ShipCity": document.getElementById("editshipCity").value || null,
+            "ShipRegion": document.getElementById("editshipRegion").value || null,
+            "ShipPostalCode": document.getElementById("editshipPostalCode").value || null,
+            "ShipCountry": document.getElementById("editshipCountry").value || null
+        };
+        
+      
+      await editOrder(order);
+      // Cerrar el modal manualmente
+    //   let modal = document.getElementById('editOrderModal');
+    //   modal.classList.remove('show'); // Quita la clase "show"
+    //   modal.style.display = 'none'; // Oculta el modal
+    //   document.body.classList.remove('modal-open'); // Quita la clase "modal-open" del body
+    //   let backdrop = document.querySelector('.modal-backdrop');
+    //   if (backdrop) {
+    //       backdrop.remove(); // Elimina el fondo del modal
+    //   }
+        $('#editOrderModal').modal('hide');
+        await fillOrdersTable();
+    })
+
+
+async function editOrder(order) {
+    let response = await fetch(`/orders/${order.OrderID}`,{
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(order)
+    });
 }

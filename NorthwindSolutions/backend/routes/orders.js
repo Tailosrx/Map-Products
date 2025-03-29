@@ -7,7 +7,7 @@ const router = Router();
 router.get('/', async (req, res) => {
     let client = new pg.Client(dbconnection);
     await client.connect();
-    let result = await client.query('SELECT "OrderID", "CustomerID", "EmployeeID", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "ShipName", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry" FROM Orders limit 50');
+    let result = await client.query('SELECT "OrderID", "CustomerID", "EmployeeID", "OrderDate", "RequiredDate", "ShippedDate", "ShipVia", "ShipName", "ShipAddress", "ShipCity", "ShipRegion", "ShipPostalCode", "ShipCountry" FROM Orders Order by "OrderID" limit 50');
     // result.rows
     res.json(result.rows);
     await client.end();
