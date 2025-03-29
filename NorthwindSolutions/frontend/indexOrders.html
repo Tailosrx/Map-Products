@@ -242,9 +242,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="pagination-container">
-                                <button id="prevPage">Prev</button>
-                                <button id="nextPage">Next</button>
+                            <div id="pagination-container" class="d-flex justify-content-between">
+                                <button id="prevPage" class="">Prev</button>
+                                <button id="nextPage" class="">Next</button>
                             </div>
                         </div>
                     </div>
@@ -350,6 +350,90 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="saveOrderBtn">Save Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="addOrderModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editOrderModalLabel">edit New Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editOrderForm">
+                        <div class="form-group">
+                            <label for="orderID">Order ID</label>
+                            <input type="number" class="form-control" id="editorderID" placeholder="Enter Order ID"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerID">Customer ID</label>
+                            <select class="form-control" id="editcustomerID" required>
+                                <option value="">Select Customer ID</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeID">Employee ID</label>
+                            <select class="form-control" id="editemployeeID" required>
+                                <option value="">Select Employee</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderDate">Order Date</label>
+                            <input type="date" class="form-control" id="editorderDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="requiredDate">Required Date</label>
+                            <input type="date" class="form-control" id="editrequiredDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shippedDate">Shipped Date</label>
+                            <input type="date" class="form-control" id="editshippedDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipVia">Ship Via</label>
+                            <input type="number" class="form-control" id="editshipVia" placeholder="Enter Ship Via">
+                        </div>
+                        <div class="form-group">
+                            <label for="freight">Freight</label>
+                            <input type="number" step="0.01" class="form-control" id="editfreight"
+                                placeholder="Enter Freight">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipName">Ship Name</label>
+                            <input type="text" class="form-control" id="editshipName" placeholder="Enter Ship Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAddress">Ship Address</label>
+                            <input type="text" class="form-control" id="editshipAddress" placeholder="Enter Ship Address">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipCity">Ship City</label>
+                            <input type="text" class="form-control" id="editshipCity" placeholder="Enter Ship City">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipRegion">Ship Region</label>
+                            <input type="text" class="form-control" id="editshipRegion" placeholder="Enter Ship Region">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipPostalCode">Ship Postal Code</label>
+                            <input type="text" class="form-control" id="editshipPostalCode"
+                                placeholder="Enter Ship Postal Code">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipCountry">Ship Country</label>
+                            <input type="text" class="form-control" id="editshipCountry" placeholder="Enter Ship Country">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="editOrderBtn">Save Order</button>
                 </div>
             </div>
         </div>

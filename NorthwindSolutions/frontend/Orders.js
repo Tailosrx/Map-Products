@@ -6,36 +6,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 });
 
-
-async function saveProduct(orders) {
-    let result = await fetch('orders', {
-        method: 'POST',
-        headers: {
-            "Content-Type": "aplication/json"
-        },
-        body: JSON.stringify(orders)
-    })
-}
-
-const limit = 1;
-const offset = 50;
-
-nextPage.addEventListener('click', async () => {
-    limit++;
-    fillOrdersTable(limit);
-});
-
-prevPage.addEventListener('click', async () => {
-    if (limit <= 1) {
-        limit--;
-        fillOrdersTable(limit);
-    }
-});
-
 async function fillOrdersTable(limit) {
     Recargar();
     // let response = await fetch('/orders');
-    let response = await fetch(`/orders?limit=${limit}&offset=${offset}`);
+    let response = await fetch(`/orders`);
     let orders = await response.json();
     console.log(orders);
     // console.log(result);
@@ -59,11 +33,12 @@ async function fillOrdersTable(limit) {
             <td>${order.ShipPostalCode}</td>
             <td>${order.ShipCountry}</td>
             <td>
-                <i class="fas fa-edit"></i>
+                <i class="fas fa-edit edit-btn" data-id="${order.OrderID}" style="cursor: pointer; color: gray;"></i>
                 <i class="fas fa-trash delete-btn" data-id="${order.OrderID}" style="cursor: pointer; color: red;"></i>
             </td>
         </tr>`
     }
+    //DELETE
     let deleteButton = document.querySelectorAll('.delete-btn');
     for(let button of deleteButton){
         button.addEventListener('click', () =>{
@@ -71,6 +46,8 @@ async function fillOrdersTable(limit) {
             deleteOrder(orderID);
         })
     }
+    //EDIT
+    
 }
 
 function Recargar() {
