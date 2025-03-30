@@ -4,6 +4,7 @@ import dbconnection from '../../dbconnection.js';
 import { json } from 'stream/consumers';
 const router = Router();
 
+//Totes les Ordres
 router.get('/', async (req, res) => {
     let client = new pg.Client(dbconnection);
     await client.connect();
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
     await client.end();
 });
 
-
+//Tots els customers
 router.get('/customers', async (req, res) =>{
     let client = new pg.Client(dbconnection);
     await client.connect();
@@ -22,6 +23,7 @@ router.get('/customers', async (req, res) =>{
     await client.end();
 })
 
+//Tots els employees
 router.get('/employees', async (req, res)=>{
     let client = new pg.Client(dbconnection)
     await client.connect();
@@ -30,7 +32,7 @@ router.get('/employees', async (req, res)=>{
     await client.end();
 })
 
-
+//Eliminar per id
 router.delete('/:id', async(req, res)=>{
     let client = new pg.Client(dbconnection);
     await client.connect();
@@ -39,7 +41,7 @@ router.delete('/:id', async(req, res)=>{
     await client.end();
 })
 
-
+//Afegir una Ordre
 router.post('/', async (req,res)=>{
     const data = req.body
     let pgClient = new pg.Client(dbconnection);
@@ -56,15 +58,6 @@ router.post('/', async (req,res)=>{
     // res.json({message: "Producte insertat correctament", data: data});
 });
 
-router.get('/:id', async (req, res) => {
-    let pgClient = new pg.Client(dbconnection);
-    await pgClient.connect();
-    let query = await pgClient.query(`SELECT * FROM orders WHERE "OrderID" = $1`, [req.params.id]);
-    res.json(query.rows[0]);
-    await pgClient.end();
-});
-
-
 router.put('/:id', async (req,res)=>{
     let pgClient = new pg.Client(dbconnection);
     await pgClient.connect();
@@ -75,6 +68,16 @@ router.put('/:id', async (req,res)=>{
     // res.json({message: "Producte actualitzat correctament", data: data});
     await pgClient.end();
 });
+
+// Filtre per id
+router.get('/:id', async (req, res) => {
+    let pgClient = new pg.Client(dbconnection);
+    await pgClient.connect();
+    let query = await pgClient.query(`SELECT * FROM orders WHERE "OrderID" = $1`, [req.params.id]);
+    res.json(query.rows[0]);
+    await pgClient.end();
+});
+
 
 
 // router.put('/:id', async (req, res) =>{

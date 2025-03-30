@@ -156,9 +156,6 @@ async function deleteOrder(orderID) {
 }
 
 async function loadOrderData(orderID) {
-    await fillCustomerDropdown();
-    await fillEmployeesDropdown();
-
     let response = await fetch(`/orders/${orderID}`);
     let order = await response.json();
 
@@ -173,18 +170,35 @@ async function loadOrderData(orderID) {
 
 
 
-    document.getElementById("editcustomerID").value = order.CustomerID;
-    
+    // customer
+    let customerSelect = document.getElementById('editcustomerID');
+    let customerResult = await fetch('/customers');
+    let customers = await customerResult.json();
+    //limpiar opciones
+    customerSelect.innerHTML = '<option value="">Select Customer ID</option>';
     for(let customer of customers){
         const option = document.createElement("option");
         option.value = customer.CustomerID;
         option.textContent = `Customer ${customer.CustomerID}`
         customerSelect.appendChild(option);
     }
+    customerSelect.value = order.CustomerID;
+    
 
 
 
-    document.getElementById("editemployeeID").value = order.EmployeeID;
+    let employeeSelect = document.getElementById('editemployeeID');
+    let employeeResult = await fetch('/employees');
+    let employees = await employeeResult.json();
+    //limpiar opciones
+    employeeSelect.innerHTML = '<option value="">Select Employee</option>';
+    for(let employee of employees){
+        const option = document.createElement("option");
+        option.value = employee.EmployeeID;
+        option.textContent = `Employee ${employee.EmployeeID}`
+        employeeSelect.appendChild(option);
+    };
+    employeeSelect.value = order.EmployeeID;
 
 
 
