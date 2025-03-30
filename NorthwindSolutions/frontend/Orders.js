@@ -184,9 +184,7 @@ async function loadOrderData(orderID) {
     }
     customerSelect.value = order.CustomerID;
     
-
-
-
+    //employees
     let employeeSelect = document.getElementById('editemployeeID');
     let employeeResult = await fetch('/employees');
     let employees = await employeeResult.json();
@@ -199,7 +197,6 @@ async function loadOrderData(orderID) {
         employeeSelect.appendChild(option);
     };
     employeeSelect.value = order.EmployeeID;
-
 
 
     document.getElementById("editorderDate").value = formatDate(order.OrderDate);
