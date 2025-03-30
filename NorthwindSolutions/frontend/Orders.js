@@ -11,10 +11,7 @@ async function fillOrdersTable(limit) {
     // let response = await fetch('/orders');
     let response = await fetch(`/orders`);
     let orders = await response.json();
-    console.log(orders);
-    // console.log(result);
     let table = document.querySelector('#orders-table tbody')
-    console.log(table);
     table.innerHTML = '';
     for (let order of orders) {
         table.innerHTML += `<tr>
@@ -55,6 +52,18 @@ async function fillOrdersTable(limit) {
         });
     }
 }
+
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll('#orders-table tbody tr');
+
+    rows.forEach(row => {
+        let text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+    });
+});
+
 
 function Recargar() {
     let table = document.querySelector('#orders-table tbody')
