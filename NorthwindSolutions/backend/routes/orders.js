@@ -15,22 +15,22 @@ router.get('/', async (req, res) => {
 });
 
 //Tots els customers
-router.get('/customers', async (req, res) =>{
-    let client = new pg.Client(dbconnection);
-    await client.connect();
-    let result = await client.query('Select "CustomerID" From customers');
-    res.json(result.rows);
-    await client.end();
-})
+// router.get('/customers', async (req, res) =>{
+//     let client = new pg.Client(dbconnection);
+//     await client.connect();
+//     let result = await client.query('Select "CustomerID" From customers');
+//     res.json(result.rows);
+//     await client.end();
+// })
 
-//Tots els employees
-router.get('/employees', async (req, res)=>{
-    let client = new pg.Client(dbconnection)
-    await client.connect();
-    let result = await client.query('SELECT "EmployeeID" FROM employees');
-    res.json(result.rows);
-    await client.end();
-})
+// //Tots els employees
+// router.get('/employees', async (req, res)=>{
+//     let client = new pg.Client(dbconnection)
+//     await client.connect();
+//     let result = await client.query('SELECT "EmployeeID" FROM employees');
+//     res.json(result.rows);
+//     await client.end();
+// })
 
 //Eliminar per id
 router.delete('/:id', async(req, res)=>{

@@ -118,7 +118,6 @@ async function saveOrder(order) {
     })
 }
 
-
 async function fillCustomerDropdown() {
     let customerSelect = document.getElementById('customerID');
 
