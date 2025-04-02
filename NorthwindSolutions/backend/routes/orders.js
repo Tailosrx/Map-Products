@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import pg from 'pg';
 import dbconnection from '../../dbconnection.js';
-import { json } from 'stream/consumers';
 const router = Router();
 
 //Totes les Ordres
@@ -13,24 +12,6 @@ router.get('/', async (req, res) => {
     res.json(result.rows);
     await client.end();
 });
-
-//Tots els customers
-// router.get('/customers', async (req, res) =>{
-//     let client = new pg.Client(dbconnection);
-//     await client.connect();
-//     let result = await client.query('Select "CustomerID" From customers');
-//     res.json(result.rows);
-//     await client.end();
-// })
-
-// //Tots els employees
-// router.get('/employees', async (req, res)=>{
-//     let client = new pg.Client(dbconnection)
-//     await client.connect();
-//     let result = await client.query('SELECT "EmployeeID" FROM employees');
-//     res.json(result.rows);
-//     await client.end();
-// })
 
 //Eliminar per id
 router.delete('/:id', async(req, res)=>{
