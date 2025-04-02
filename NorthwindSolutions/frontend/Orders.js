@@ -53,7 +53,6 @@ async function fillOrdersTable(limit) {
     }
 }
 
-
 document.getElementById('searchInput').addEventListener('input', function() {
     let filter = this.value.toLowerCase();
     let rows = document.querySelectorAll('#orders-table tbody tr');
@@ -130,7 +129,6 @@ async function fillCustomerDropdown() {
         option.textContent = `Customer ${customer.CustomerID}`
         customerSelect.appendChild(option);
     }
-    console.log("Customers cargados:", customers);  // <-- VERIFICA LOS DATOS CARGADOS
 }
 
 async function fillEmployeesDropdown() {
