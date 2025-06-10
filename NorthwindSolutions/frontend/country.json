@@ -1,0 +1,88 @@
+{
+    "countries": [
+        {
+            "country": "Austria",
+            "products": 5167
+        },
+        {
+            "country": "Brazil",
+            "products": 4267
+        },
+        {
+            "country": "France",
+            "products": 3254
+        },
+        {
+            "country": "Venezuela",
+            "products": 2936
+        },
+        {
+            "country": "UK",
+            "products": 2742
+        },
+        {
+            "country": "Venezuela",
+            "products": 2936
+        },
+        {
+            "country": "UK",
+            "products": 2742
+        },
+        {
+            "country": "Sweden",
+            "products": 2235
+        },
+        {
+            "country": "Canada",
+            "products": 1984
+        },
+        {
+            "country": "Ireland",
+            "products": 1684
+        },
+        {
+            "country": "Belgium",
+            "products": 1392
+        },
+        {
+            "country": "Switzerland",
+            "products": 1275
+        },
+        {
+            "country": "Denmark",
+            "products": 1170
+        },
+        {
+            "country": "Mexico",
+            "products": 1025
+        },
+        {
+            "country": "Finland",
+            "products": 885
+        },
+        {
+            "country": "Italy",
+            "products": 822
+        },
+        {
+            "country": "Spain",
+            "products": 718
+        },
+        {
+            "country": "Portugal",
+            "products": 533
+        },
+        {
+            "country": "Argentina",
+            "products": 339
+        },
+        {
+            "country": "Poland",
+            "products": 205
+        },
+        {
+            "country": "Norway",
+            "products": 161
+        }
+    ]
+}

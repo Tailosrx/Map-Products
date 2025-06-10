@@ -4,9 +4,6 @@ import dbconnection from '../../dbconnection.js';
 
 const router = Router();
 
-// router.get('/', (req, res) => {
-//   res.send('Hello World');
-// });
 
 router.get('/', async (req, res) => {
     let pgClient = new pg.Client(dbconnection);
