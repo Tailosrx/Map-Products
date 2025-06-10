@@ -24,13 +24,19 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const employeeId = req.params.id;
     const { LastName, FirstName, Title, HireDate, City, Region } = req.body;
+    let pgClient = new pg.Client(dbconnection);
+    await pgClient.connect();
+    
+
+    console.log('Updating employee with ID:', employeeId);
+    console.log('Data received:', { LastName, FirstName, Title, HireDate, City, Region });
 
     try {
         const result = await db.query(
             `UPDATE employees
              SET "LastName" = $1, "FirstName" = $2, "Title" = $3, "HireDate" = $4, "City" = $5, "Region" = $6
              WHERE "EmployeeID" = $7
-             RETURNING *`,
+             RETURNING *;`,
             [LastName, FirstName, Title, HireDate, City, Region, employeeId]
         );
 
@@ -40,10 +46,16 @@ router.put('/:id', async (req, res) => {
             res.status(404).send('Employee not found');
         }
     } catch (error) {
-        console.error('Error updating employee:', error);
-        res.status(500).send('Failed to update employee');
-        
+        console.error('Error updating Empleado:', error);
+        res.status(500).json({
+            message: 'Fallo update Empleado',
+            error: error.message,
+        });
     }
+    finally{
+        await pgClient.end();
+
+    };
 });
 
 // Si deja el profe cambiar el id para que sea autoincremental con GENERATED ALWAYS AS IDENTITY
@@ -74,9 +86,9 @@ router.post('/', async (req, res) => {
         wrapper.data = result.rows[0];
         res.status(201).json(wrapper);
     } catch (error) {
-        console.error('Error creating employee:', error);
+        console.error('Error creando Empleado:', error);
         wrapper.status = 'error';
-        wrapper.errorText = 'Failed to create employee';
+        wrapper.errorText = 'Fallo al crear Empleado';
         res.status(500).json(wrapper);
     } finally {
         await pgClient.end();
@@ -95,13 +107,13 @@ router.delete('/:id', async (req, res) => {
         const result = await pgClient.query(query, [employeeId]);
 
         if (result.rowCount > 0) {
-            res.status(200).send('Employee deleted successfully');
+            res.status(200).send('Empleado borrado con exito');
         } else {
             res.status(404).send('Employee not found');
         }
     } catch (error) {
-        console.error('Error deleting employee:', error);
-        res.status(500).send('Failed to delete employee');
+        console.error('Error eliminando un  empleado:', error);
+        res.status(500).send('Fallo al borrar empleado');
     } finally {
         await pgClient.end();
     }
